@@ -1,2 +1,2 @@
-# react-demo
+# redux-demo
 react practise
