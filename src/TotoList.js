@@ -33,18 +33,35 @@ class TodoList extends Component {
         this.setState(store.getState())
     }
 
+    deleteItem =(index)=>{
+        console.log(index)
+        const action = {
+            type:'deleteItem',
+            value:index
+        }
+        store.dispatch(action)
+    }
+
+    addItem = ()=>{
+        const action = {
+            type:'addItem',
+            value:'加一条'
+        }
+        store.dispatch(action)
+    }
+
     render() { 
         return ( 
             <div style={{margin:'10px'}}>
                 <div>
                     <Input placeholder={this.state.inputValue} style={{ width:'250px', marginRight:'10px'}} onChange={this.changeInputValue}/>
-                    <Button type="primary">增加</Button>
+                    <Button onClick={this.addItem()} type="primary">增加</Button>
                 </div>
                 <div style={{margin:'10px',width:'300px'}}>
                     <List
                         bordered
                         dataSource={this.state.list}
-                        renderItem={item=>(<List.Item>{item}</List.Item>)}
+                        renderItem={(item,index)=>(<List.Item onClick={this.deleteItem.bind(this,index)}>{item}</List.Item>)}
                     />    
                 </div>
             </div>

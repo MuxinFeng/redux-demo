@@ -10,6 +10,14 @@ export default (state = defaultState,action)=>{  //就是一个方法函数
         let newState = JSON.parse(JSON.stringify(state)) //深度拷贝state
         newState.inputValue = action.value;
         return newState
-    }
+    }else if(action.type === 'deleteItem'){
+        let newState = JSON.parse(JSON.stringify(state))
+        newState.list.splice(action.value,1);
+        return newState
+    }else if(action.type === 'addItem'){
+        let newState = JSON.parse(JSON.stringify(state)) //深度拷贝state
+        newState.list.push(action.value);
+        return newState
+    }else
     return state
 }
